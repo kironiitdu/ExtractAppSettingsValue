@@ -2,6 +2,10 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Way:1
+var clusterSettingsPass = builder.Configuration.GetValue<string>("ClusterSettings:Password");
+
+//Way:2
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 var clusterSettings = configuration.GetValue<string>("ClusterSettings:Host");
 
