@@ -3,11 +3,11 @@ using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 //Way:1
-var clusterSettingsPass = builder.Configuration.GetValue<string>("ClusterSettings:Password");
+var getEndpoint = builder.Configuration.GetValue<string>("AuthToken:Endpoint");
 
 //Way:2
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-var clusterSettings = configuration.GetValue<string>("ClusterSettings:Host");
+var way_2_getEndpoint = configuration.GetValue<string>("AuthToken:Endpoint");
 
 
 // Add services to the container.

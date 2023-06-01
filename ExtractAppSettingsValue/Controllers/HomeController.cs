@@ -8,23 +8,24 @@ namespace ExtractAppSettingsValue.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _appSettingsValue;
-        private string clusterSettings;
+        private string endpointURL;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
             _appSettingsValue = configuration;
-            clusterSettings = _appSettingsValue["ClusterSettings:Host"]!;
+            endpointURL = _appSettingsValue["AuthToken:Endpoint"]!;
         }
 
         public IActionResult Index()
         {
-            var getAppSettingsValue = clusterSettings;
+            var getAppSettingsValue = endpointURL;
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy(string id, string name)
         {
+            TempData["Message"] = $"Id:{id} and name:{name}";
             return View();
         }
 
