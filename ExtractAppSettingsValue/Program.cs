@@ -1,3 +1,4 @@
+using ExtractAppSettingsValue.Middleware;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,11 @@ var way_2_getEndpoint = configuration.GetValue<string>("AuthToken:Endpoint");
 
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+
+    options.Filters.Add<AuthenticationMiddleware>();
+});
 
 var app = builder.Build();
 
@@ -29,6 +34,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",

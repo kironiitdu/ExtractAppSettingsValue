@@ -19,6 +19,7 @@ namespace ExtractAppSettingsValue.Controllers
 
         public IActionResult Index()
         {
+           
             var getAppSettingsValue = endpointURL;
             return View();
         }
